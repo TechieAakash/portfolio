@@ -45,7 +45,7 @@ const PortfolioDashboard = () => {
       color: 'from-purple-500 to-pink-500',
       description: 'Aadhaar Linked Regional Intelligence System - ML-powered platform for UIDAI to assess service gaps and optimize resource allocation',
       github: 'https://github.com/TechieAakash/Aadhaar-Linked-Regional-Intelligence-System',
-      demo: 'https://aadhaar-linked-regional-intelligenc.vercel.app'
+      demo: 'https://aadhaar-linked-regional-intelligence-tlpw.onrender.com'
     },
     {
       id: 2,
@@ -438,36 +438,46 @@ const PortfolioDashboard = () => {
                 </div>
               </div>
 
-              {/* Chart */}
-              <div className="h-64 flex items-end justify-between gap-2">
+              {/* Horizontal Chart */}
+              <div className="space-y-6">
                 {activityData.map((data, idx) => {
-                  // Calculate heights with better scaling (minimum 15% for visibility)
-                  const maxCommits = Math.max(...activityData.map(d => d.commits));
-                  const maxPRs = Math.max(...activityData.map(d => d.pullRequests));
-                  const commitHeight = Math.max(15, (data.commits / maxCommits) * 85);
-                  const prHeight = Math.max(10, (data.pullRequests / maxPRs) * 50);
+                  const maxVal = Math.max(
+                    ...allActivityData.map((d) => Math.max(d.commits, d.pullRequests))
+                  );
+                  const commitWidth = Math.max(5, (data.commits / maxVal) * 100);
+                  const prWidth = Math.max(5, (data.pullRequests / maxVal) * 100);
 
                   return (
-                    <div key={idx} className="flex-1 flex flex-col items-center gap-2">
-                      <div className="w-full flex flex-col gap-1 items-center justify-end h-full">
-                        <div
-                          className="w-full bg-gradient-to-t from-blue-500 to-blue-300 rounded-t-lg hover:from-blue-600 hover:to-blue-400 transition-all cursor-pointer relative group"
-                          style={{ height: `${commitHeight}%`, minHeight: '20px' }}
-                        >
-                          <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                            {data.commits} commits
-                          </span>
-                        </div>
-                        <div
-                          className="w-full bg-gradient-to-t from-purple-500 to-purple-300 rounded-t-lg hover:from-purple-600 hover:to-purple-400 transition-all cursor-pointer relative group"
-                          style={{ height: `${prHeight}%`, minHeight: '15px' }}
-                        >
-                          <span className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">
-                            {data.pullRequests} PRs
-                          </span>
+                    <div key={idx} className="flex flex-col gap-2">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-sm font-bold text-gray-700 w-12">{data.month}</span>
+                        <div className="flex-1 ml-4 space-y-2">
+                          {/* Commits Bar */}
+                          <div className="relative flex items-center group">
+                            <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
+                              <div
+                                className="h-full bg-gradient-to-r from-blue-500 to-blue-300 rounded-full transition-all duration-700 ease-out"
+                                style={{ width: `${commitWidth}%` }}
+                              />
+                            </div>
+                            <span className="ml-4 text-xs font-semibold text-blue-600 min-w-[70px]">
+                              {data.commits} commits
+                            </span>
+                          </div>
+                          {/* PRs Bar */}
+                          <div className="relative flex items-center group">
+                            <div className="flex-1 bg-gray-100 rounded-full h-4 overflow-hidden">
+                              <div
+                                className="h-full bg-gradient-to-r from-purple-500 to-purple-300 rounded-full transition-all duration-700 ease-out"
+                                style={{ width: `${prWidth}%` }}
+                              />
+                            </div>
+                            <span className="ml-4 text-xs font-semibold text-purple-600 min-w-[70px]">
+                              {data.pullRequests} PRs
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      <span className="text-xs text-gray-600 font-medium">{data.month}</span>
                     </div>
                   );
                 })}

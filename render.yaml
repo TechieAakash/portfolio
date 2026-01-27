@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: techie-aakash-portfolio
+    env: static
+    buildCommand: npm run build
+    publishDir: dist
+    autoDeploy: true
