@@ -818,9 +818,9 @@ const PortfolioDashboard = () => {
                   <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                     <Award className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">ATS-Ready Resume</h3>
+                  <h3 className="text-xl font-bold mb-2">Professional Resume</h3>
                   <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                    Download my one-page, FAANG-optimized PDF resume designed for maximum ATS compatibility.
+                    Download my latest CV to see my full technical background and academic achievements.
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -829,7 +829,7 @@ const PortfolioDashboard = () => {
                     className="w-full py-3 bg-white text-gray-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group"
                   >
                     <Award className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
-                    Download ATS CV
+                    Download Resume
                   </a>
                   <a
                     href="mailto:aakash3121733@gmail.com"
