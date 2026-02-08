@@ -313,6 +313,36 @@ const PortfolioDashboard = () => {
     </motion.div>
   );
 
+  const NotFoundView = () => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      className="flex flex-col items-center justify-center py-20 text-center"
+    >
+      <motion.div
+        animate={{
+          rotate: [0, 10, -10, 10, 0],
+          y: [0, -20, 0]
+        }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="text-9xl mb-8"
+      >
+        🛰️
+      </motion.div>
+      <h2 className="text-4xl font-bold text-gray-800 dark:text-white mb-4">404: Lost in Code Space</h2>
+      <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-md mx-auto">
+        Oops! It looks like you've drifted into an undefined sector. Even the best developers get lost sometimes.
+      </p>
+      <button
+        onClick={() => setActiveTab('overview')}
+        className="px-8 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl shadow-lg hover:shadow-blue-500/40 transition-all flex items-center gap-2"
+      >
+        <Zap className="w-5 h-5" />
+        Back to Earth (Home)
+      </button>
+    </motion.div>
+  );
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-gray-900 dark:via-blue-950 dark:to-purple-950 p-4 sm:p-6 lg:p-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto w-full">
@@ -727,9 +757,21 @@ const PortfolioDashboard = () => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     setIsSubmitting(true);
+
+                    const formData = new FormData(e.target);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const message = formData.get('message');
+
+                    // Create mailto link
+                    const subject = `Portfolio Inquiry from ${name}`;
+                    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+                    const mailtoUrl = `mailto:aakash3121733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
                     setTimeout(() => {
                       setIsSubmitting(false);
                       setIsSent(true);
+                      window.location.href = mailtoUrl;
                       setTimeout(() => setIsSent(false), 3000);
                     }, 1500);
                   }}
@@ -737,12 +779,14 @@ const PortfolioDashboard = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input
                       type="text"
+                      name="name"
                       required
                       placeholder="Your Name"
                       className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
                     />
                     <input
                       type="email"
+                      name="email"
                       required
                       placeholder="Your Email"
                       className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
@@ -750,6 +794,7 @@ const PortfolioDashboard = () => {
                   </div>
                   <textarea
                     rows="4"
+                    name="message"
                     required
                     placeholder="Your Message..."
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm resize-none"
@@ -951,6 +996,11 @@ const PortfolioDashboard = () => {
               </div>
             </div>
           </motion.div>
+        )}
+
+        {/* Fallback 404 View */}
+        {!['overview', 'projects', 'skills'].includes(activeTab) && (
+          <NotFoundView />
         )}
 
         {/* Project Modal */}
