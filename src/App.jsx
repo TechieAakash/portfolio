@@ -14,6 +14,7 @@ const PortfolioDashboard = () => {
   });
   const [metrics, setMetrics] = useState({ projects: 0, commits: 0, stars: 0, contributions: 0 });
   const [targetMetrics, setTargetMetrics] = useState({ projects: 3, commits: 87, stars: 2, contributions: 87 });
+  const [leetcodeData, setLeetcodeData] = useState(null);
 
   // Theme toggle effect
   useEffect(() => {
@@ -43,6 +44,19 @@ const PortfolioDashboard = () => {
       }
     };
     fetchGitHubData();
+
+    const fetchLeetCodeData = async () => {
+      try {
+        const response = await fetch('https://leetcode-stats-api.herokuapp.com/Aakash_Yadav1213');
+        const data = await response.json();
+        if (data.status === 'success') {
+          setLeetcodeData(data);
+        }
+      } catch (error) {
+        console.error('Error fetching LeetCode data:', error);
+      }
+    };
+    fetchLeetCodeData();
   }, []);
 
   // Animate metrics on mount
@@ -937,53 +951,71 @@ const PortfolioDashboard = () => {
               ))}
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
-              <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6">Skill Distribution</h2>
-              <div className="space-y-4">
-                {['Frontend', 'Backend', 'DevOps', 'Database'].map((category, idx) => {
-                  const categorySkills = skills.filter(s => s.category === category);
-                  const avgLevel = categorySkills.length > 0
-                    ? categorySkills.reduce((acc, s) => acc + s.level, 0) / categorySkills.length
-                    : 0;
-                  const colors = ['from-blue-500 to-cyan-500', 'from-green-500 to-emerald-500', 'from-purple-500 to-pink-500', 'from-orange-500 to-red-500'];
-
-                  return (
-                    <motion.div
-                      key={idx}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: idx * 0.1 }}
-                      viewport={{ once: true }}
-                      className="p-4 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-transparent dark:border-gray-700/50 transition-colors"
-                    >
-                      <div className="flex justify-between items-center mb-3">
-                        <h3 className="font-semibold text-gray-700 dark:text-gray-300">{category}</h3>
-                        <span className="text-2xl font-bold text-gray-800 dark:text-white">{Math.round(avgLevel)}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${avgLevel}%` }}
-                          transition={{ duration: 1, delay: 0.5 }}
-                          viewport={{ once: true }}
-                          className={`h-full bg-gradient-to-r ${colors[idx]}`}
-                        />
-                      </div>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">{categorySkills.length} skills</p>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              <div className="mt-6 p-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 rounded-lg border border-blue-100 dark:border-gray-700">
-                <h3 className="font-semibold text-gray-800 dark:text-white mb-2">Learning Path</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3">Currently focusing on advanced cloud architecture and AI/ML integration</p>
-                <div className="flex gap-2">
-                  <span className="px-3 py-1 bg-white dark:bg-gray-700 text-blue-600 dark:text-blue-400 text-xs rounded-full font-medium border border-blue-200 dark:border-blue-800">Kubernetes</span>
-                  <span className="px-3 py-1 bg-white dark:bg-gray-700 text-purple-600 dark:text-purple-400 text-xs rounded-full font-medium border border-purple-200 dark:border-purple-800">LangChain</span>
-                  <span className="px-3 py-1 bg-white dark:bg-gray-700 text-green-600 dark:text-green-400 text-xs rounded-full font-medium border border-green-200 dark:border-green-800">Rust</span>
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 flex flex-col h-full">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-gray-800 dark:text-white">Coding Proficiency</h2>
+                <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg">
+                  <BarChart3 className="w-5 h-5 text-orange-600 dark:text-orange-400" />
                 </div>
               </div>
+
+              {leetcodeData ? (
+                <div className="space-y-6">
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Easy</p>
+                      <p className="text-lg font-bold text-green-600 dark:text-green-400">{leetcodeData.easySolved}</p>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Med.</p>
+                      <p className="text-lg font-bold text-yellow-600 dark:text-yellow-400">{leetcodeData.mediumSolved}</p>
+                    </div>
+                    <div className="text-center p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-100 dark:border-gray-700">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Hard</p>
+                      <p className="text-lg font-bold text-red-600 dark:text-red-400">{leetcodeData.hardSolved}</p>
+                    </div>
+                  </div>
+
+                  <div className="relative pt-2">
+                    <div className="flex justify-between text-sm mb-2">
+                      <span className="font-bold text-gray-700 dark:text-gray-300">Total Solved</span>
+                      <span className="text-blue-600 dark:text-blue-400 font-bold">{leetcodeData.totalSolved} / {leetcodeData.totalQuestions}</span>
+                    </div>
+                    <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${(leetcodeData.totalSolved / leetcodeData.totalQuestions) * 100}%` }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        className="h-full bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full shadow-sm"
+                      />
+                    </div>
+                    <p className="text-[10px] text-gray-500 mt-2 italic text-center">Top {Math.round(leetcodeData.ranking / 10000)}k Ranking on LeetCode</p>
+                  </div>
+
+                  <div className="p-4 bg-gradient-to-br from-gray-50 to-orange-50 dark:from-gray-900 dark:to-orange-950/20 rounded-xl border border-orange-100 dark:border-orange-900/30">
+                    <div className="flex items-center justify-between mb-2">
+                      <p className="text-sm font-bold text-gray-800 dark:text-white">Acceptance Rate</p>
+                      <span className="text-sm font-bold text-orange-600 dark:text-orange-400">{leetcodeData.acceptanceRate}%</span>
+                    </div>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">High accuracy and optimized logic in problem-solving</p>
+                  </div>
+
+                  <a
+                    href="https://leetcode.com/u/Aakash_Yadav1213"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 bg-gradient-to-r from-orange-500 to-yellow-600 hover:from-orange-400 hover:to-yellow-500 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-md shadow-orange-500/20"
+                  >
+                    View LeetCode Profile
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-12 gap-4">
+                  <div className="w-8 h-8 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin"></div>
+                  <p className="text-sm text-gray-500">Syncing LeetCode stats...</p>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
