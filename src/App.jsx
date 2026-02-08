@@ -390,7 +390,7 @@ const PortfolioDashboard = () => {
                   {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
                 </button>
                 <div className="flex gap-2">
-                  {['overview', 'projects', 'skills'].map((tab) => (
+                  {['overview', 'projects', 'skills', 'contact'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
@@ -745,160 +745,6 @@ const PortfolioDashboard = () => {
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 -trblue-x-1/2 -trblue-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-            </div>
-
-            {/* Contact Section - Hire Me Moment */}
-            <div id="contact" className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl shadow-xl p-8 md:p-10 text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium mb-4">
-                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                    Open to Full-Time Opportunities
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-3">Let's Build Something Amazing</h2>
-                  <p className="text-blue-100 max-w-xl mx-auto">
-                    I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision.
-                  </p>
-                </div>
-
-                {/* Contact Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  {/* Left - Direct Contact Links */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold mb-4">Connect Directly</h3>
-
-                    {/* Email */}
-                    <a
-                      href="mailto:aakash3121733@gmail.com"
-                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
-                    >
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Mail className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-blue-200">Email</p>
-                        <p className="font-semibold">aakash3121733@gmail.com</p>
-                      </div>
-                    </a>
-
-                    {/* LinkedIn */}
-                    <a
-                      href="https://linkedin.com/in/aakash-yadav-33a135332"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
-                    >
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Linkedin className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-blue-200">LinkedIn</p>
-                        <p className="font-semibold">Connect with me</p>
-                      </div>
-                    </a>
-
-                    {/* GitHub */}
-                    <a
-                      href="https://github.com/TechieAakash"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
-                    >
-                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Github className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <p className="text-sm text-blue-200">GitHub</p>
-                        <p className="font-semibold">View my code</p>
-                      </div>
-                    </a>
-
-                    {/* Resume Button */}
-                    <a
-                      href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-3 p-4 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg mt-6"
-                    >
-                      <Award className="w-5 h-5 text-blue-600" />
-                      View Resume (PDF)
-                    </a>
-                  </div>
-
-                  {/* Right - Contact Form */}
-                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
-                    <h3 className="text-lg font-semibold mb-4">Send a Message</h3>
-                    <form
-                      className="space-y-4"
-                      onSubmit={(e) => {
-                        e.preventDefault();
-                        setIsSubmitting(true);
-
-                        const formData = new FormData(e.target);
-                        const name = formData.get('name');
-                        const email = formData.get('email');
-                        const message = formData.get('message');
-
-                        const subject = `Portfolio Inquiry from ${name}`;
-                        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-                        const mailtoUrl = `mailto:aakash3121733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-                        setTimeout(() => {
-                          setIsSubmitting(false);
-                          setIsSent(true);
-                          window.location.href = mailtoUrl;
-                          setTimeout(() => setIsSent(false), 3000);
-                        }, 1500);
-                      }}
-                    >
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        placeholder="Your Name"
-                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
-                      />
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        placeholder="Your Email"
-                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
-                      />
-                      <textarea
-                        rows="4"
-                        name="message"
-                        required
-                        placeholder="Your Message..."
-                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none"
-                      ></textarea>
-                      <button
-                        disabled={isSubmitting || isSent}
-                        className={`w-full py-4 bg-white text-gray-900 font-bold rounded-lg shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 ${isSubmitting || isSent ? 'opacity-70 cursor-not-allowed' : ''}`}
-                      >
-                        {isSubmitting ? (
-                          <div className="w-6 h-6 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
-                        ) : isSent ? (
-                          <>
-                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}><Code2 className="w-5 h-5 text-green-600" /></motion.div>
-                            Message Sent!
-                          </>
-                        ) : (
-                          <>
-                            <Zap className="w-5 h-5 text-blue-600" />
-                            Send Message
-                          </>
-                        )}
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
             </div>
 
             {/* Recent Projects Preview */}
@@ -1065,8 +911,248 @@ const PortfolioDashboard = () => {
           </motion.div>
         )}
 
+
+        {/* Contact Tab */}
+        {activeTab === 'contact' && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-8"
+          >
+            {/* Hero Section */}
+            <div className="text-center py-8">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1 }}
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 rounded-full text-sm font-semibold text-green-700 dark:text-green-400 mb-6 border border-green-200 dark:border-green-800"
+              >
+                <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
+                Open to Full-Time Opportunities
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4"
+              >
+                Let's Build Something{' '}
+                <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Amazing
+                </span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+              >
+                I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision.
+              </motion.p>
+            </div>
+
+            {/* Main Contact Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Left Column - Contact Options */}
+              <div className="space-y-6">
+                {/* Contact Cards */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 border border-gray-100 dark:border-gray-700"
+                >
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-blue-500 to-purple-600 rounded-full"></div>
+                    Connect Directly
+                  </h2>
+
+                  <div className="space-y-4">
+                    {/* Email */}
+                    <a
+                      href="mailto:aakash3121733@gmail.com"
+                      className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all group border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800"
+                    >
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                        <Mail className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">Email</p>
+                        <p className="font-bold text-gray-800 dark:text-white">aakash3121733@gmail.com</p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                    </a>
+
+                    {/* LinkedIn */}
+                    <a
+                      href="https://linkedin.com/in/aakash-yadav-33a135332"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all group border border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800"
+                    >
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform">
+                        <Linkedin className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">LinkedIn</p>
+                        <p className="font-bold text-gray-800 dark:text-white">Connect with me</p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500 group-hover:translate-x-1 transition-all" />
+                    </a>
+
+                    {/* GitHub */}
+                    <a
+                      href="https://github.com/TechieAakash"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-900/50 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-700/50 transition-all group border border-gray-100 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
+                    >
+                      <div className="w-14 h-14 bg-gradient-to-br from-gray-700 to-gray-900 dark:from-gray-600 dark:to-gray-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <Github className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wider">GitHub</p>
+                        <p className="font-bold text-gray-800 dark:text-white">View my code</p>
+                      </div>
+                      <ChevronRight className="w-5 h-5 text-gray-400 group-hover:text-gray-600 group-hover:translate-x-1 transition-all" />
+                    </a>
+                  </div>
+                </motion.div>
+
+                {/* Resume Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl shadow-xl p-6 text-white relative overflow-hidden"
+                >
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center">
+                        <Award className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold">Resume / CV</h3>
+                        <p className="text-sm text-blue-200">View my complete background</p>
+                      </div>
+                    </div>
+                    <a
+                      href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 w-full py-4 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg"
+                    >
+                      <Award className="w-5 h-5 text-blue-600" />
+                      View Resume (PDF)
+                    </a>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Right Column - Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700"
+              >
+                <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-2 flex items-center gap-2">
+                  <div className="w-1 h-6 bg-gradient-to-b from-purple-500 to-pink-600 rounded-full"></div>
+                  Send a Message
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  Have a question or want to work together? Drop me a message!
+                </p>
+
+                <form
+                  className="space-y-5"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setIsSubmitting(true);
+
+                    const formData = new FormData(e.target);
+                    const name = formData.get('name');
+                    const email = formData.get('email');
+                    const message = formData.get('message');
+
+                    const subject = `Portfolio Inquiry from ${name}`;
+                    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+                    const mailtoUrl = `mailto:aakash3121733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                    setTimeout(() => {
+                      setIsSubmitting(false);
+                      setIsSent(true);
+                      window.location.href = mailtoUrl;
+                      setTimeout(() => setIsSent(false), 3000);
+                    }, 1500);
+                  }}
+                >
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Your Message</label>
+                    <textarea
+                      rows="5"
+                      name="message"
+                      required
+                      placeholder="Tell me about your project or opportunity..."
+                      className="w-full px-4 py-3.5 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                    ></textarea>
+                  </div>
+                  <button
+                    disabled={isSubmitting || isSent}
+                    className={`w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all flex items-center justify-center gap-2 ${isSubmitting || isSent ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? (
+                      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    ) : isSent ? (
+                      <>
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}><Code2 className="w-5 h-5" /></motion.div>
+                        Message Sent!
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
+                  </button>
+                </form>
+
+                {/* Quick Tip */}
+                <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-900/50">
+                  <p className="text-xs text-blue-700 dark:text-blue-300">
+                    <span className="font-bold">💡 Tip:</span> For faster response, reach out on LinkedIn. I typically respond within 24 hours!
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Fallback 404 View */}
-        {!['overview', 'projects', 'skills'].includes(activeTab) && (
+        {!['overview', 'projects', 'skills', 'contact'].includes(activeTab) && (
           <NotFoundView />
         )}
 
