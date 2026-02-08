@@ -748,112 +748,155 @@ const PortfolioDashboard = () => {
               <div className="absolute top-0 right-0 -trblue-x-1/2 -trblue-y-1/2 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
             </div>
 
-            {/* Contact & Resume Section */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              {/* Contact Form */}
-              <div className="lg:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                    <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+            {/* Contact Section - Hire Me Moment */}
+            <div id="contact" className="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 rounded-2xl shadow-xl p-8 md:p-10 text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+
+              <div className="relative z-10">
+                {/* Header */}
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium mb-4">
+                    <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                    Open to Full-Time Opportunities
                   </div>
-                  <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Get In Touch</h2>
-                </div>
-                <form
-                  className="space-y-4"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setIsSubmitting(true);
-
-                    const formData = new FormData(e.target);
-                    const name = formData.get('name');
-                    const email = formData.get('email');
-                    const message = formData.get('message');
-
-                    // Create mailto link
-                    const subject = `Portfolio Inquiry from ${name}`;
-                    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-                    const mailtoUrl = `mailto:aakash3121733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-                    setTimeout(() => {
-                      setIsSubmitting(false);
-                      setIsSent(true);
-                      window.location.href = mailtoUrl;
-                      setTimeout(() => setIsSent(false), 3000);
-                    }, 1500);
-                  }}
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      placeholder="Your Name"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
-                    />
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      placeholder="Your Email"
-                      className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
-                    />
-                  </div>
-                  <textarea
-                    rows="4"
-                    name="message"
-                    required
-                    placeholder="Your Message..."
-                    className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm resize-none"
-                  ></textarea>
-                  <button
-                    disabled={isSubmitting || isSent}
-                    className={`w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all flex items-center justify-center gap-2 ${isSubmitting || isSent ? 'opacity-70 cursor-not-allowed' : ''}`}
-                  >
-                    {isSubmitting ? (
-                      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                    ) : isSent ? (
-                      <>
-                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}><Code2 className="w-5 h-5" /></motion.div>
-                        Message Sent!
-                      </>
-                    ) : (
-                      <>
-                        <Zap className="w-5 h-5" />
-                        Send Message
-                      </>
-                    )}
-                  </button>
-                </form>
-              </div>
-
-              {/* Resume Card */}
-              <div className="bg-gradient-to-br from-gray-800 to-gray-900 dark:from-gray-950 dark:to-black rounded-2xl shadow-xl p-8 text-white flex flex-col justify-between border border-gray-700">
-                <div>
-                  <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
-                    <Award className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <h3 className="text-xl font-bold mb-2">Resume</h3>
-                  <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                    View my latest CV for a comprehensive look at my background.
+                  <h2 className="text-3xl md:text-4xl font-bold mb-3">Let's Build Something Amazing</h2>
+                  <p className="text-blue-100 max-w-xl mx-auto">
+                    I'm always excited to discuss new projects, creative ideas, or opportunities to be part of your vision.
                   </p>
                 </div>
-                <div className="space-y-3">
-                  <a
-                    href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 bg-white text-gray-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group"
-                  >
-                    <Award className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
-                    View Resume
-                  </a>
-                  <a
-                    href="mailto:aakash3121733@gmail.com"
-                    className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all"
-                  >
-                    <Mail className="w-4 h-4" />
-                    Hire Me
-                  </a>
+
+                {/* Contact Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Left - Direct Contact Links */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold mb-4">Connect Directly</h3>
+
+                    {/* Email */}
+                    <a
+                      href="mailto:aakash3121733@gmail.com"
+                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
+                    >
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Mail className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-blue-200">Email</p>
+                        <p className="font-semibold">aakash3121733@gmail.com</p>
+                      </div>
+                    </a>
+
+                    {/* LinkedIn */}
+                    <a
+                      href="https://linkedin.com/in/aakash-yadav-33a135332"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
+                    >
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Linkedin className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-blue-200">LinkedIn</p>
+                        <p className="font-semibold">Connect with me</p>
+                      </div>
+                    </a>
+
+                    {/* GitHub */}
+                    <a
+                      href="https://github.com/TechieAakash"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-4 p-4 bg-white/10 backdrop-blur-md rounded-xl hover:bg-white/20 transition-all group"
+                    >
+                      <div className="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Github className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-blue-200">GitHub</p>
+                        <p className="font-semibold">View my code</p>
+                      </div>
+                    </a>
+
+                    {/* Resume Button */}
+                    <a
+                      href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 p-4 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-100 transition-all shadow-lg mt-6"
+                    >
+                      <Award className="w-5 h-5 text-blue-600" />
+                      View Resume (PDF)
+                    </a>
+                  </div>
+
+                  {/* Right - Contact Form */}
+                  <div className="bg-white/10 backdrop-blur-md rounded-xl p-6">
+                    <h3 className="text-lg font-semibold mb-4">Send a Message</h3>
+                    <form
+                      className="space-y-4"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setIsSubmitting(true);
+
+                        const formData = new FormData(e.target);
+                        const name = formData.get('name');
+                        const email = formData.get('email');
+                        const message = formData.get('message');
+
+                        const subject = `Portfolio Inquiry from ${name}`;
+                        const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+                        const mailtoUrl = `mailto:aakash3121733@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                        setTimeout(() => {
+                          setIsSubmitting(false);
+                          setIsSent(true);
+                          window.location.href = mailtoUrl;
+                          setTimeout(() => setIsSent(false), 3000);
+                        }, 1500);
+                      }}
+                    >
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        placeholder="Your Name"
+                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+                      />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        placeholder="Your Email"
+                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all"
+                      />
+                      <textarea
+                        rows="4"
+                        name="message"
+                        required
+                        placeholder="Your Message..."
+                        className="w-full px-4 py-3 rounded-lg bg-white/20 border border-white/30 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none"
+                      ></textarea>
+                      <button
+                        disabled={isSubmitting || isSent}
+                        className={`w-full py-4 bg-white text-gray-900 font-bold rounded-lg shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center gap-2 ${isSubmitting || isSent ? 'opacity-70 cursor-not-allowed' : ''}`}
+                      >
+                        {isSubmitting ? (
+                          <div className="w-6 h-6 border-2 border-gray-300 border-t-gray-900 rounded-full animate-spin"></div>
+                        ) : isSent ? (
+                          <>
+                            <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}><Code2 className="w-5 h-5 text-green-600" /></motion.div>
+                            Message Sent!
+                          </>
+                        ) : (
+                          <>
+                            <Zap className="w-5 h-5 text-blue-600" />
+                            Send Message
+                          </>
+                        )}
+                      </button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
