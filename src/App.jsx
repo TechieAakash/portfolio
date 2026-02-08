@@ -13,7 +13,7 @@ const PortfolioDashboard = () => {
     return false;
   });
   const [metrics, setMetrics] = useState({ projects: 0, commits: 0, stars: 0, contributions: 0 });
-  const [targetMetrics, setTargetMetrics] = useState({ projects: 4, commits: 87, stars: 2, contributions: 87 });
+  const [targetMetrics, setTargetMetrics] = useState({ projects: 3, commits: 87, stars: 2, contributions: 87 });
 
   // Theme toggle effect
   useEffect(() => {
@@ -36,12 +36,8 @@ const PortfolioDashboard = () => {
       try {
         const response = await fetch('https://api.github.com/users/TechieAakash');
         const data = await response.json();
-        if (data.public_repos) {
-          setTargetMetrics(prev => ({
-            ...prev,
-            projects: data.public_repos
-          }));
-        }
+        // We keep projects fixed at 3 as per user preference (the 3 main "alive" projects)
+        // Only fetching repos to confirm connection, not using raw count for metrics
       } catch (error) {
         console.error('Error fetching GitHub data:', error);
       }
@@ -121,22 +117,6 @@ const PortfolioDashboard = () => {
       solution: 'Built a lightweight, responsive web application using Flask for routing and advanced JavaScript for real-time filtering across a curated recipe database.',
       impact: 'Created a high-performance tool with zero latency and 100% mobile responsiveness, improving user retention for everyday culinary tasks.',
       github: 'https://github.com/TechieAakash/recipeFinderApp',
-      demo: null
-    },
-    {
-      id: 4,
-      name: 'Currency Converter',
-      category: 'Web App',
-      status: 'Completed',
-      progress: 100,
-      tech: ['HTML', 'CSS', 'JavaScript'],
-      stars: 2,
-      color: 'from-orange-500 to-red-500',
-      description: 'Elegant currency converter with real-time exchange rates and clean UI.',
-      challenge: 'Existing currency tools were often cluttered with ads or lacked instant real-time synchronization with global exchange rates.',
-      solution: 'Designed a minimalist, pure JavaScript tool that connects directly to real-time currency APIs, prioritizing speed and UI clarity above all else.',
-      impact: 'Provided a stable, zero-overhead utility for instant financial calculations with a modern aesthetic that fits into any daily workflow.',
-      github: 'https://github.com/TechieAakash/My-first-project',
       demo: null
     }
   ];
@@ -567,7 +547,7 @@ const PortfolioDashboard = () => {
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-4 border border-purple-200 dark:border-purple-900/50">
                   <p className="text-xs text-purple-600 dark:text-purple-400 font-semibold mb-1">Repositories</p>
-                  <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">4</p>
+                  <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{projects.length}</p>
                   <p className="text-xs text-purple-500 dark:text-purple-400/60 mt-1">All public projects</p>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-4 border border-green-200 dark:border-green-900/50">
