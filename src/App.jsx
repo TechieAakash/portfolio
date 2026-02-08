@@ -535,9 +535,9 @@ const PortfolioDashboard = () => {
                 <div>
                   <h2 className="text-xl font-bold text-gray-800 dark:text-white">Activity Overview</h2>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {timeRange === 'week' && 'Showing: February 2026'}
-                    {timeRange === 'month' && 'Showing: January 2026 - February 2026'}
-                    {timeRange === 'year' && 'Showing: November 2024 - February 2026 (Active months only)'}
+                    {timeRange === 'week' && `Showing: ${new Date().toLocaleString('default', { month: 'long' })} ${new Date().getFullYear()}`}
+                    {timeRange === 'month' && `Showing: ${new Date(new Date().setMonth(new Date().getMonth() - 1)).toLocaleString('default', { month: 'long' })} - ${new Date().toLocaleString('default', { month: 'long' })} ${new Date().getFullYear()}`}
+                    {timeRange === 'year' && `Showing: November 2024 - ${new Date().toLocaleString('default', { month: 'long' })} ${new Date().getFullYear()} (Active months only)`}
                   </p>
                 </div>
                 <select
@@ -676,9 +676,6 @@ const PortfolioDashboard = () => {
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🚗 Dec: Smart Parking System (37 commits)
-                    </span>
-                    <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
-                      🚀 Jan 2026: ALRIS Project (28 commits)
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🚀 Jan 2026: ALRIS Project (28 commits)
