@@ -545,7 +545,7 @@ const PortfolioDashboard = () => {
                   onChange={(e) => setTimeRange(e.target.value)}
                   className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white dark:bg-gray-700 hover:border-blue-400 dark:hover:border-blue-500 transition-colors"
                 >
-                  <option value="week">This Month (Jan)</option>
+                  <option value="week">This Month ({new Date().toLocaleString('default', { month: 'short' })})</option>
                   <option value="month">Last 2 Months</option>
                   <option value="year">All Activity</option>
                 </select>
@@ -679,6 +679,9 @@ const PortfolioDashboard = () => {
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🚀 Jan 2026: ALRIS Project (28 commits)
+                    </span>
+                    <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
+                      🛠️ Feb 2026: Portfolio Optimization (10 commits)
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🛠️ Feb 2026: Portfolio Optimization (10 commits)
