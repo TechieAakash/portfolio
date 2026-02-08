@@ -18,14 +18,14 @@ A modern, responsive portfolio dashboard built with React and Tailwind CSS showc
 - About Me section with bio and role badges
 - Current focus areas and quick facts
 - Activity chart with filtering (This Month, Last 2 Months, All Activity)
-- Summary statistics (87 contributions, 4 repositories, 3 active months)
+- Summary statistics (135 commits, 5 repositories, active months since Nov 2024)
 - Development highlights timeline
 
 ### Projects
-- Recipe Finder App (JavaScript)
-- Smart Parking System (HTML/CSS/JS)
-- ALRIS - Aadhaar Linked Regional Intelligence System (HTML/Python)
-- Currency Converter (HTML/CSS/JS)
+- Recipe Finder App (Python/Flask)
+- Smart Parking System (Node.js/Express)
+- ALRIS - Aadhaar Linked Regional Intelligence System (ML/Flask)
+- Portfolio (React/Vite)
 
 ### Skills
 - **Languages**: JavaScript, Python, Java, C++/DSA

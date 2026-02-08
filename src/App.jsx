@@ -13,7 +13,7 @@ const PortfolioDashboard = () => {
     return false;
   });
   const [metrics, setMetrics] = useState({ projects: 0, commits: 0, stars: 0, contributions: 0 });
-  const [targetMetrics, setTargetMetrics] = useState({ projects: 3, commits: 87, stars: 2, contributions: 87 });
+  const [targetMetrics, setTargetMetrics] = useState({ projects: 5, commits: 135, stars: 0, contributions: 89 });
   const [leetcodeData, setLeetcodeData] = useState(null);
 
   // Theme toggle effect
@@ -124,14 +124,14 @@ const PortfolioDashboard = () => {
       status: 'Completed',
       progress: 100,
       tech: ['Flask', 'JavaScript', 'MySQL'],
-      stars: 3,
+      stars: 0,
       color: 'from-green-500 to-emerald-500',
       description: 'Modern web app for discovering 20+ Indian recipes with search and animations.',
       challenge: 'Home cooks needed a quick, mobile-friendly way to find Indian recipes based on ingredients while maintaining a premium, distraction-free cooking environment.',
       solution: 'Built a lightweight, responsive web application using Flask for routing and advanced JavaScript for real-time filtering across a curated recipe database.',
       impact: 'Created a high-performance tool with zero latency and 100% mobile responsiveness, improving user retention for everyday culinary tasks.',
       github: 'https://github.com/TechieAakash/recipeFinderApp',
-      demo: null
+      demo: 'https://recipefinderapp-u8mg.onrender.com/'
     }
   ];
 
@@ -366,7 +366,7 @@ const PortfolioDashboard = () => {
                 </div>
                 <div>
                   <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-1">Aakash Yadav</h1>
-                  <p className="text-gray-600 dark:text-gray-300">Aspiring Software Engineer | Tech Enthusiast</p>
+                  <p className="text-gray-600 dark:text-gray-300">Aspiring Software Engineer | Tech Enthusiast | Open Source Contributor</p>
                   <div className="flex gap-4 mt-3">
                     <a href="https://github.com/TechieAakash" target="_blank" rel="noopener noreferrer" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                       <Github className="w-5 h-5" />
@@ -457,9 +457,8 @@ const PortfolioDashboard = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Hi, I'm <span className="font-semibold text-gray-900 dark:text-white">Aakash Yadav</span> — A passionate tech enthusiast
-                    currently pursuing my degree at <span className="font-semibold text-blue-600 dark:text-blue-400">Netaji Subhas University of Technology</span> (formerly NSIT),
-                    Dwarka. I love building user-friendly applications that solve real-world problems.
+                    Hi, I'm <span className="font-semibold text-gray-900 dark:text-white">Aakash Yadav</span> — A tech enthusiast passionate about coding, debugging, and building user-friendly apps.
+                    I'm currently pursuing my degree at <span className="font-semibold text-blue-600 dark:text-blue-400">Netaji Subhas University of Technology</span> (formerly NSIT), Dwarka.
                   </p>
                   <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     My journey in software development has led me to work on diverse projects ranging from
