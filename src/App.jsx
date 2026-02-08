@@ -58,7 +58,7 @@ const PortfolioDashboard = () => {
       color: 'from-blue-500 to-cyan-500',
       description: 'Full-stack parking management with real-time tracking, violation auto-detection, and contractor limit enforcement for smart cities',
       github: 'https://github.com/TechieAakash/SmartParking-Project',
-      demo: 'https://smart-parking-project-nine.vercel.app'
+      demo: 'https://smartparking-project-2.onrender.com'
     },
     {
       id: 3,
