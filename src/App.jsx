@@ -26,6 +26,8 @@ const PortfolioDashboard = () => {
   }, [isDarkMode]);
   const [selectedProject, setSelectedProject] = useState(null);
   const [timeRange, setTimeRange] = useState('month');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   // Fetch actual GitHub data
   useEffect(() => {
@@ -259,9 +261,12 @@ const PortfolioDashboard = () => {
             <span className="font-semibold">{project.progress}%</span>
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 overflow-hidden">
-            <div
-              className={`h-full bg-gradient-to-r ${project.color} transition-all duration-1000 ease-out`}
-              style={{ width: `${project.progress}%` }}
+            <motion.div
+              initial={{ width: 0 }}
+              whileInView={{ width: `${project.progress}%` }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className={`h-full bg-gradient-to-r ${project.color}`}
             />
           </div>
         </div>
@@ -337,31 +342,32 @@ const PortfolioDashboard = () => {
                     <a href="mailto:aakash3121733@gmail.com" className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors">
                       <Mail className="w-5 h-5" />
                     </a>
-                    {/* Dark Mode Toggle */}
-                    <button
-                      onClick={() => setIsDarkMode(!isDarkMode)}
-                      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-all duration-300 shadow-sm"
-                      aria-label="Toggle Theme"
-                    >
-                      {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-                    </button>
                   </div>
                 </div>
               </div>
 
-              <div className="flex gap-2">
-                {['overview', 'projects', 'skills'].map((tab) => (
-                  <button
-                    key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${activeTab === tab
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                      }`}
-                  >
-                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                  </button>
-                ))}
+              <div className="flex flex-col items-end gap-4">
+                <button
+                  onClick={() => setIsDarkMode(!isDarkMode)}
+                  className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-sm border border-gray-200 dark:border-gray-600"
+                  aria-label="Toggle Theme"
+                >
+                  {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
+                </button>
+                <div className="flex gap-2">
+                  {['overview', 'projects', 'skills'].map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${activeTab === tab
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
+                    >
+                      {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -370,9 +376,9 @@ const PortfolioDashboard = () => {
         {/* Overview Tab */}
         {activeTab === 'overview' && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="space-y-6"
           >
             {/* Stats Grid */}
@@ -717,27 +723,55 @@ const PortfolioDashboard = () => {
                   </div>
                   <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Get In Touch</h2>
                 </div>
-                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                <form
+                  className="space-y-4"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setIsSubmitting(true);
+                    setTimeout(() => {
+                      setIsSubmitting(false);
+                      setIsSent(true);
+                      setTimeout(() => setIsSent(false), 3000);
+                    }, 1500);
+                  }}
+                >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input
                       type="text"
+                      required
                       placeholder="Your Name"
                       className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
                     />
                     <input
                       type="email"
+                      required
                       placeholder="Your Email"
                       className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm"
                     />
                   </div>
                   <textarea
                     rows="4"
+                    required
                     placeholder="Your Message..."
                     className="w-full px-4 py-3 rounded-xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm resize-none"
                   ></textarea>
-                  <button className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all flex items-center justify-center gap-2">
-                    <Zap className="w-5 h-5" />
-                    Send Message
+                  <button
+                    disabled={isSubmitting || isSent}
+                    className={`w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all flex items-center justify-center gap-2 ${isSubmitting || isSent ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  >
+                    {isSubmitting ? (
+                      <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    ) : isSent ? (
+                      <>
+                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}><Code2 className="w-5 h-5" /></motion.div>
+                        Message Sent!
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
                   </button>
                 </form>
               </div>
@@ -755,8 +789,9 @@ const PortfolioDashboard = () => {
                 </div>
                 <div className="space-y-3">
                   <a
-                    href="/resume.pdf"
+                    href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-3 bg-white text-gray-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all"
                   >
                     <ExternalLink className="w-4 h-4" />
