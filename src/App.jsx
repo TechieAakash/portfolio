@@ -211,9 +211,12 @@ const PortfolioDashboard = () => {
       const currentMonth = new Date().toLocaleString('default', { month: 'short' });
       filtered = allActivityData.filter(d => d.month === currentMonth);
     } else if (timeRange === 'month') {
-      // Last month - show Dec and Jan
-      filtered = allActivityData.filter(d => d.month === 'Dec' || d.month === 'Jan');
-    } else {
+      // Show current and previous month
+      const currentMonth = new Date().toLocaleString('default', { month: 'short' });
+      const prevMonth = new Date(new Date().setMonth(new Date().getMonth() - 1)).toLocaleString('default', { month: 'short' });
+      filtered = allActivityData.filter(d => d.month === currentMonth || d.month === prevMonth);
+    }
+    else {
       // Last year - show only months with activity (Nov, Dec, Jan)
       filtered = allActivityData.filter(d => d.commits > 0 || d.pullRequests > 0);
     }
