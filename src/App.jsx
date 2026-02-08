@@ -1143,74 +1143,68 @@ const PortfolioDashboard = () => {
 
       {/* Footer */}
       <footer className="w-full mt-12 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-            {/* Branding Column */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          {/* Main Footer Row */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            {/* Branding */}
             <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+              <h3 className="text-lg font-bold text-gray-800 dark:text-white">
                 Aakash Yadav
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 Building scalable web apps & creating engaging content
               </p>
             </div>
 
-            {/* Quick Links Column */}
-            <div className="text-center">
-              <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
-                Quick Links
-              </h4>
-              <nav className="flex flex-col gap-2">
-                {[
-                  { name: 'About', target: 'overview' },
-                  { name: 'Projects', target: 'projects' },
-                  { name: 'Skills', target: 'skills' },
-                  { name: 'Contact', target: 'overview' }
-                ].map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => {
-                      setActiveTab(link.target);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 hover:underline underline-offset-4 bg-transparent border-none cursor-pointer"
-                  >
-                    {link.name}
-                  </button>
-                ))}
-              </nav>
-            </div>
-
-            {/* Back to Top Column */}
-            <div className="text-center md:text-right flex flex-col items-center md:items-end justify-center">
-              <button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="group flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 text-white font-medium text-sm shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300"
-              >
-                <span>Back to Top</span>
-                <svg
-                  className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {/* Quick Links - Horizontal */}
+            <nav className="flex items-center gap-6">
+              {[
+                { name: 'About', target: 'overview' },
+                { name: 'Projects', target: 'projects' },
+                { name: 'Skills', target: 'skills' },
+                { name: 'Contact', target: 'overview' }
+              ].map((link) => (
+                <button
+                  key={link.name}
+                  onClick={() => {
+                    setActiveTab(link.target);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 bg-transparent border-none cursor-pointer"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M5 10l7-7m0 0l7 7m-7-7v18"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+                  {link.name}
+                </button>
+              ))}
+            </nav>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-100 dark:border-gray-700 py-6">
-          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
-            © 2026 Aakash Yadav. All Rights Reserved.
-          </p>
+            {/* Back to Top */}
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-medium text-sm transition-all duration-200"
+            >
+              <span>Back to Top</span>
+              <svg
+                className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 10l7-7m0 0l7 7m-7-7v18"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Divider & Copyright */}
+          <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-700">
+            <p className="text-center text-sm text-gray-500 dark:text-gray-400">
+              © 2026 Aakash Yadav. All Rights Reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
