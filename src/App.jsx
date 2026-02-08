@@ -207,8 +207,9 @@ const PortfolioDashboard = () => {
     let filtered = [];
 
     if (timeRange === 'week') {
-      // Last week - show only current month (Jan)
-      filtered = allActivityData.filter(d => d.month === 'Jan');
+      // Show only current month
+      const currentMonth = new Date().toLocaleString('default', { month: 'short' });
+      filtered = allActivityData.filter(d => d.month === currentMonth);
     } else if (timeRange === 'month') {
       // Last month - show Dec and Jan
       filtered = allActivityData.filter(d => d.month === 'Dec' || d.month === 'Jan');
