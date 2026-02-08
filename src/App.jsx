@@ -381,7 +381,7 @@ const PortfolioDashboard = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col items-end gap-4">
+              <div className="flex flex-col items-start sm:items-end gap-4 w-full sm:w-auto">
                 <button
                   onClick={() => setIsDarkMode(!isDarkMode)}
                   className="p-3 rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-sm border border-gray-200 dark:border-gray-600"
@@ -389,12 +389,12 @@ const PortfolioDashboard = () => {
                 >
                   {isDarkMode ? <Sun className="w-6 h-6" /> : <Moon className="w-6 h-6" />}
                 </button>
-                <div className="flex gap-2">
+                <div className="flex gap-1 sm:gap-2 flex-wrap sm:flex-nowrap w-full sm:w-auto">
                   {['overview', 'projects', 'skills', 'contact'].map((tab) => (
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-2.5 rounded-lg font-semibold transition-all duration-300 ${activeTab === tab
+                      className={`flex-1 sm:flex-none px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 ${activeTab === tab
                         ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                         }`}
@@ -1291,7 +1291,7 @@ const PortfolioDashboard = () => {
                 { name: 'About', target: 'overview' },
                 { name: 'Projects', target: 'projects' },
                 { name: 'Skills', target: 'skills' },
-                { name: 'Contact', target: 'overview' }
+                { name: 'Contact', target: 'contact' }
               ].map((link) => (
                 <button
                   key={link.name}
