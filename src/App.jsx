@@ -1142,38 +1142,22 @@ const PortfolioDashboard = () => {
       </div>
 
       {/* Footer */}
-      <footer
-        id="footer"
-        className="w-full mt-12"
-        style={{
-          backgroundColor: '#1a1a1a',
-          fontFamily: "'Inter', sans-serif"
-        }}
-      >
+      <footer className="w-full mt-12 bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {/* Branding Column */}
             <div className="text-center md:text-left">
-              <h3
-                className="text-xl font-bold mb-2"
-                style={{ color: '#ffffff' }}
-              >
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
                 Aakash Yadav
               </h3>
-              <p
-                className="text-sm leading-relaxed"
-                style={{ color: '#9ca3af' }}
-              >
+              <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                 Building scalable web apps & creating engaging content
               </p>
             </div>
 
             {/* Quick Links Column */}
             <div className="text-center">
-              <h4
-                className="text-sm font-semibold mb-4 uppercase tracking-wider"
-                style={{ color: '#9ca3af' }}
-              >
+              <h4 className="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-4 uppercase tracking-wider">
                 Quick Links
               </h4>
               <nav className="flex flex-col gap-2">
@@ -1189,12 +1173,7 @@ const PortfolioDashboard = () => {
                       setActiveTab(link.target);
                       window.scrollTo({ top: 0, behavior: 'smooth' });
                     }}
-                    className="text-sm transition-all duration-200 hover:underline underline-offset-4 bg-transparent border-none cursor-pointer"
-                    style={{
-                      color: '#9ca3af',
-                    }}
-                    onMouseEnter={(e) => e.target.style.color = '#00bcd4'}
-                    onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200 hover:underline underline-offset-4 bg-transparent border-none cursor-pointer"
                   >
                     {link.name}
                   </button>
@@ -1206,18 +1185,9 @@ const PortfolioDashboard = () => {
             <div className="text-center md:text-right flex flex-col items-center md:items-end justify-center">
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="group flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 bg-transparent border border-gray-700 hover:border-cyan-500"
-                style={{ color: '#9ca3af' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.color = '#00bcd4';
-                  e.currentTarget.style.borderColor = '#00bcd4';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.color = '#9ca3af';
-                  e.currentTarget.style.borderColor = '#374151';
-                }}
+                className="group flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-400 hover:to-purple-500 text-white font-medium text-sm shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all duration-300"
               >
-                <span className="text-sm font-medium">Back to Top</span>
+                <span>Back to Top</span>
                 <svg
                   className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5"
                   fill="none"
@@ -1237,14 +1207,8 @@ const PortfolioDashboard = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div
-          className="border-t py-6"
-          style={{ borderColor: '#2d2d2d' }}
-        >
-          <p
-            className="text-center text-sm"
-            style={{ color: '#6b7280' }}
-          >
+        <div className="border-t border-gray-100 dark:border-gray-700 py-6">
+          <p className="text-center text-sm text-gray-500 dark:text-gray-400">
             © 2026 Aakash Yadav. All Rights Reserved.
           </p>
         </div>
