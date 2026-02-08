@@ -818,9 +818,9 @@ const PortfolioDashboard = () => {
                   <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
                     <Award className="w-6 h-6 text-blue-400" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2">Professional Resume</h3>
+                  <h3 className="text-xl font-bold mb-2">Resume</h3>
                   <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                    Download my latest CV to see my full technical background and academic achievements.
+                    Download my latest CV for a comprehensive look at my background.
                   </p>
                 </div>
                 <div className="space-y-3">
