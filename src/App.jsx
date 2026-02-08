@@ -13,7 +13,7 @@ const PortfolioDashboard = () => {
     return false;
   });
   const [metrics, setMetrics] = useState({ projects: 0, commits: 0, stars: 0, contributions: 0 });
-  const [targetMetrics, setTargetMetrics] = useState({ projects: 5, commits: 135, stars: 0, contributions: 89 });
+  const [targetMetrics, setTargetMetrics] = useState({ projects: 3, commits: 145, stars: 0, contributions: 89 });
   const [leetcodeData, setLeetcodeData] = useState(null);
 
   // Theme toggle effect
@@ -188,7 +188,7 @@ const PortfolioDashboard = () => {
     // Account created: Nov 2024, Active for ~3 months
     return [
       { month: 'Jan', commits: 28, pullRequests: 6 },   // ALRIS project (Jan 2026)
-      { month: 'Feb', commits: 0, pullRequests: 0 },    // Future month
+      { month: 'Feb', commits: 10, pullRequests: 2 },   // Portfolio Optimization (Feb 2026)
       { month: 'Mar', commits: 0, pullRequests: 0 },    // Future month
       { month: 'Apr', commits: 0, pullRequests: 0 },    // Future month
       { month: 'May', commits: 0, pullRequests: 0 },    // Future month
@@ -535,9 +535,9 @@ const PortfolioDashboard = () => {
                 <div>
                   <h2 className="text-xl font-bold text-gray-800 dark:text-white">Activity Overview</h2>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {timeRange === 'week' && 'Showing: January 2026'}
-                    {timeRange === 'month' && 'Showing: December 2025 - January 2026'}
-                    {timeRange === 'year' && 'Showing: November 2024 - January 2026 (Active months only)'}
+                    {timeRange === 'week' && 'Showing: February 2026'}
+                    {timeRange === 'month' && 'Showing: January 2026 - February 2026'}
+                    {timeRange === 'year' && 'Showing: November 2024 - February 2026 (Active months only)'}
                   </p>
                 </div>
                 <select
@@ -555,23 +555,23 @@ const PortfolioDashboard = () => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg p-4 border border-blue-200 dark:border-blue-900/50">
                   <p className="text-xs text-blue-600 dark:text-blue-400 font-semibold mb-1">Total Contributions</p>
-                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">87</p>
+                  <p className="text-2xl font-bold text-blue-700 dark:text-blue-300">89</p>
                   <p className="text-xs text-blue-500 dark:text-blue-400/60 mt-1">Since Nov 2024</p>
                 </div>
                 <div className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-lg p-4 border border-purple-200 dark:border-purple-900/50">
                   <p className="text-xs text-purple-600 dark:text-purple-400 font-semibold mb-1">Repositories</p>
-                  <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">{projects.length}</p>
-                  <p className="text-xs text-purple-500 dark:text-purple-400/60 mt-1">All public projects</p>
+                  <p className="text-2xl font-bold text-purple-700 dark:text-purple-300">3</p>
+                  <p className="text-xs text-purple-500 dark:text-purple-400/60 mt-1">Featured projects</p>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg p-4 border border-green-200 dark:border-green-900/50">
                   <p className="text-xs text-green-600 dark:text-green-400 font-semibold mb-1">Active Months</p>
-                  <p className="text-2xl font-bold text-green-700 dark:text-green-300">3</p>
-                  <p className="text-xs text-green-500 dark:text-green-400/60 mt-1">Nov, Dec, Jan</p>
+                  <p className="text-2xl font-bold text-green-700 dark:text-green-300">4</p>
+                  <p className="text-xs text-green-500 dark:text-green-400/60 mt-1">Nov, Dec, Jan, Feb</p>
                 </div>
                 <div className="bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-lg p-4 border border-orange-200 dark:border-orange-900/50">
                   <p className="text-xs text-orange-600 dark:text-orange-400 font-semibold mb-1">GitHub Stars</p>
-                  <p className="text-2xl font-bold text-orange-700 dark:text-orange-300">2</p>
-                  <p className="text-xs text-orange-500 dark:text-orange-400/60 mt-1">Received on projects</p>
+                  <p className="text-2xl font-bold text-orange-700 dark:text-orange-300">0</p>
+                  <p className="text-xs text-orange-500 dark:text-orange-400/60 mt-1">Portfolio projects</p>
                 </div>
               </div>
 
@@ -649,7 +649,7 @@ const PortfolioDashboard = () => {
                       <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                       <p className="text-xs font-semibold text-purple-700 dark:text-purple-400">Peak PR Activity</p>
                     </div>
-                    <p className="text-lg font-bold text-purple-900 dark:text-purple-200">3 Months</p>
+                    <p className="text-lg font-bold text-purple-900 dark:text-blue-200">4 Months</p>
                     <p className="text-xs text-purple-600 dark:text-purple-400/80 mt-1">Since Nov 2024 • Growing fast</p>
                   </div>
 
@@ -679,6 +679,9 @@ const PortfolioDashboard = () => {
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🚀 Jan 2026: ALRIS Project (28 commits)
+                    </span>
+                    <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
+                      🛠️ Feb 2026: Portfolio Optimization (10 commits)
                     </span>
                   </div>
                 </div>
