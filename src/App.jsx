@@ -834,16 +834,18 @@ const PortfolioDashboard = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-2">Resume</h3>
                   <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-                    Download my latest CV for a comprehensive look at my background.
+                    View my latest CV for a comprehensive look at my background.
                   </p>
                 </div>
                 <div className="space-y-3">
                   <a
-                    href="https://drive.google.com/uc?export=download&id=1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx"
+                    href="https://drive.google.com/file/d/1JH_-iIz0Kq_Tm5tPQmRmBR9DmAgEKhpx/view?usp=drivesdk"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-full py-3 bg-white text-gray-900 font-bold rounded-xl flex items-center justify-center gap-2 hover:bg-gray-100 transition-all group"
                   >
                     <Award className="w-4 h-4 text-blue-600 group-hover:scale-110 transition-transform" />
-                    Download Resume
+                    View Resume
                   </a>
                   <a
                     href="mailto:aakash3121733@gmail.com"
