@@ -13,6 +13,7 @@ const PortfolioDashboard = () => {
     return false;
   });
   const [metrics, setMetrics] = useState({ projects: 0, commits: 0, stars: 0, contributions: 0 });
+  const [targetMetrics, setTargetMetrics] = useState({ projects: 4, commits: 87, stars: 2, contributions: 87 });
 
   // Theme toggle effect
   useEffect(() => {
@@ -36,10 +37,9 @@ const PortfolioDashboard = () => {
         const response = await fetch('https://api.github.com/users/TechieAakash');
         const data = await response.json();
         if (data.public_repos) {
-          setMetrics(prev => ({
+          setTargetMetrics(prev => ({
             ...prev,
-            projects: data.public_repos,
-            contributions: 87 // GitHub doesn't give total contributions easily without GraphQL
+            projects: data.public_repos
           }));
         }
       } catch (error) {
@@ -51,7 +51,6 @@ const PortfolioDashboard = () => {
 
   // Animate metrics on mount
   useEffect(() => {
-    const targets = { projects: metrics.projects || 4, commits: 87, stars: 2, contributions: 87 };
     const duration = 2000;
     const steps = 60;
     const interval = duration / steps;
@@ -63,17 +62,17 @@ const PortfolioDashboard = () => {
       const easeOut = 1 - Math.pow(1 - progress, 3);
 
       setMetrics({
-        projects: Math.floor(targets.projects * easeOut),
-        commits: Math.floor(targets.commits * easeOut),
-        stars: Math.floor(targets.stars * easeOut),
-        contributions: Math.floor(targets.contributions * easeOut)
+        projects: Math.floor(targetMetrics.projects * easeOut),
+        commits: Math.floor(targetMetrics.commits * easeOut),
+        stars: Math.floor(targetMetrics.stars * easeOut),
+        contributions: Math.floor(targetMetrics.contributions * easeOut)
       });
 
       if (step >= steps) clearInterval(timer);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [metrics.projects]); // Re-run if API data updates initial target
+  }, [targetMetrics]); // Re-run only if target data changes
 
   const projects = [
     {
@@ -228,8 +227,8 @@ const PortfolioDashboard = () => {
           </span>
         )}
       </div>
-      <p className="text-gray-500 dark:text-gray-400 text-sm font-medium mb-1">{label}</p>
-      <p className="text-3xl font-bold text-gray-800 dark:text-white">{value.toLocaleString()}</p>
+      <p className="text-gray-500 dark:text-gray-300 text-sm font-semibold mb-1">{label}</p>
+      <p className="text-3xl font-bold text-gray-800 dark:text-white drop-shadow-sm">{value.toLocaleString()}</p>
     </div>
   );
 
@@ -797,10 +796,13 @@ const PortfolioDashboard = () => {
                     <ExternalLink className="w-4 h-4" />
                     View CV
                   </a>
-                  <button className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all">
+                  <a
+                    href="mailto:aakash3121733@gmail.com"
+                    className="w-full py-3 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-all"
+                  >
                     <Mail className="w-4 h-4" />
                     Hire Me
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -810,7 +812,10 @@ const PortfolioDashboard = () => {
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-800 dark:text-white">Featured Projects</h2>
                 <button
-                  onClick={() => setActiveTab('projects')}
+                  onClick={() => {
+                    setActiveTab('projects');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                   className="text-sm font-semibold text-blue-600 dark:text-blue-400 hover:gap-2 flex items-center gap-1 transition-all"
                 >
                   View All <ExternalLink className="w-4 h-4" />
