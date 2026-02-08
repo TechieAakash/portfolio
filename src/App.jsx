@@ -681,7 +681,7 @@ const PortfolioDashboard = () => {
                       🚀 Jan 2026: ALRIS Project (28 commits)
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
-                      🛠️ Feb 2026: Portfolio Optimization (10 commits)
+                      🚀 Jan 2026: ALRIS Project (28 commits)
                     </span>
                     <span className="text-xs bg-white px-3 py-1 rounded-full text-gray-700 border border-gray-200">
                       🛠️ Feb 2026: Portfolio Optimization (10 commits)
