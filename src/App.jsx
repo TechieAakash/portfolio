@@ -1140,6 +1140,115 @@ const PortfolioDashboard = () => {
           )}
         </AnimatePresence>
       </div>
+
+      {/* Footer */}
+      <footer
+        id="footer"
+        className="w-full mt-12"
+        style={{
+          backgroundColor: '#1a1a1a',
+          fontFamily: "'Inter', sans-serif"
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+            {/* Branding Column */}
+            <div className="text-center md:text-left">
+              <h3
+                className="text-xl font-bold mb-2"
+                style={{ color: '#ffffff' }}
+              >
+                Aakash Yadav
+              </h3>
+              <p
+                className="text-sm leading-relaxed"
+                style={{ color: '#9ca3af' }}
+              >
+                Building scalable web apps & creating engaging content
+              </p>
+            </div>
+
+            {/* Quick Links Column */}
+            <div className="text-center">
+              <h4
+                className="text-sm font-semibold mb-4 uppercase tracking-wider"
+                style={{ color: '#9ca3af' }}
+              >
+                Quick Links
+              </h4>
+              <nav className="flex flex-col gap-2">
+                {[
+                  { name: 'About', target: 'overview' },
+                  { name: 'Projects', target: 'projects' },
+                  { name: 'Skills', target: 'skills' },
+                  { name: 'Contact', target: 'overview' }
+                ].map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => {
+                      setActiveTab(link.target);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="text-sm transition-all duration-200 hover:underline underline-offset-4 bg-transparent border-none cursor-pointer"
+                    style={{
+                      color: '#9ca3af',
+                    }}
+                    onMouseEnter={(e) => e.target.style.color = '#00bcd4'}
+                    onMouseLeave={(e) => e.target.style.color = '#9ca3af'}
+                  >
+                    {link.name}
+                  </button>
+                ))}
+              </nav>
+            </div>
+
+            {/* Back to Top Column */}
+            <div className="text-center md:text-right flex flex-col items-center md:items-end justify-center">
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="group flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 bg-transparent border border-gray-700 hover:border-cyan-500"
+                style={{ color: '#9ca3af' }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = '#00bcd4';
+                  e.currentTarget.style.borderColor = '#00bcd4';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = '#9ca3af';
+                  e.currentTarget.style.borderColor = '#374151';
+                }}
+              >
+                <span className="text-sm font-medium">Back to Top</span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 10l7-7m0 0l7 7m-7-7v18"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div
+          className="border-t py-6"
+          style={{ borderColor: '#2d2d2d' }}
+        >
+          <p
+            className="text-center text-sm"
+            style={{ color: '#6b7280' }}
+          >
+            © 2026 Aakash Yadav. All Rights Reserved.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 };
