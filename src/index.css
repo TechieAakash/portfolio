@@ -3,113 +3,148 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-}
-
-:root {
-  color-scheme: light dark;
-}
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-}
-
-#root {
-  width: 100%;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   }
 
-  a:hover {
-    color: #747bff;
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
   }
 
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-/* Custom utilities for responsive profile images */
-@layer utilities {
-  .profile-image-container {
-    @apply relative overflow-hidden;
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
   }
 
-  .profile-image {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
   }
 }
 
-/* Ensure smooth transitions on all devices */
-* {
-  -webkit-tap-highlight-color: transparent;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-/* Mobile optimizations */
-@media (max-width: 640px) {
-  body {
-    min-width: 100%;
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.6);
+}
+
+/* Background Image Animation (Ken Burns + Floating Shift) */
+@keyframes kenburns-float {
+  0% {
+    transform: scale(1.02) translate(0, 0);
   }
+  33% {
+    transform: scale(1.06) translate(-10px, -8px);
+  }
+  66% {
+    transform: scale(1.04) translate(8px, 6px);
+  }
+  100% {
+    transform: scale(1.02) translate(0, 0);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns-float 24s ease-in-out infinite alternate;
+}
+
+/* Slow Floating Oscillations for Cards and Images */
+@keyframes floating-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: floating-gentle 6s ease-in-out infinite;
+}
+
+/* Infinite Marquee Grid Animations for Skills */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 35s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Mode Specific Backgrounds */
+.mode-dark {
+  background-color: #020617;
+  color: #f8fafc;
+}
+
+.mode-light {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.mode-neural {
+  background-color: #050b14;
+  color: #e2fdf4;
+}
+
+/* Neural Mode Glowing Matrix Grid */
+.mode-neural .cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+}
+
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.mode-light .cyber-grid {
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
 }
